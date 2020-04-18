@@ -2,5 +2,6 @@
   "packages": [
     "packages/*"
   ],
+  "registry": "https://registry.npm.taobao.org",
   "version": "independent"
 }
