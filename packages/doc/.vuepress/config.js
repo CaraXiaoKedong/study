@@ -13,6 +13,7 @@ module.exports = {
         title: '工具使用指南',
         path: '/guide/',
         children: [
+          '/guide/github-web-hook',
           '/guide/vuepress',
           '/guide/markdown',
           '/guide/lerna',
