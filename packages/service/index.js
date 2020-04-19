@@ -33,6 +33,7 @@ function bodyParse(req, res){
 }
 
 function routeHandler(req, res) {
+  res.writeHead(200, {'Content-Type': 'application/json'});
   if(req.url === '/api/restart/doc' && req.body.ref === 'refs/heads/master'){
     const ls = spawn('bash', [__dirname + '/pull.sh']);
     let error = '';
@@ -44,12 +45,17 @@ function routeHandler(req, res) {
       error = buffer.toString();
     });
     ls.on('close', (code) => {
-      res.writeHead(200, {'Content-Type': 'application/json'});
       res.end({
         code,
         ok: code === 0,
         error: code === 0 ? '' : error
       });
+    });
+  }else{
+    res.end({
+      code: 1,
+      ok: false,
+      error: ''
     });
   }
 }
