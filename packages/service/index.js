@@ -33,7 +33,7 @@ function bodyParse(req, res){
 }
 
 function routeHandler(req, res) {
-  if(req.url === '/api/restart/doc'){
+  if(req.url === '/api/restart/doc' && req.body.ref === 'refs/heads/master'){
     const ls = spawn('bash', [__dirname + '/pull.sh']);
     let error = '';
     ls.stdout.on('data', (buffer) => {
