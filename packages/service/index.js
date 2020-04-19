@@ -1,4 +1,5 @@
 const http = require('http');
+const { spawn } = require('child_process');
 
 const server = http.createServer((req, res) => {
   const _end = res.end;
@@ -33,9 +34,23 @@ function bodyParse(req, res){
 
 function routeHandler(req, res) {
   if(req.url === '/api/restart/doc'){
-    console.log(req.body);
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(req.body);
+    const ls = spawn('bash', [__dirname + '/pull.sh']);
+    let error = '';
+    ls.stdout.on('data', (buffer) => {
+      console.log(`stdout: ${buffer}`);
+    });
+    ls.stderr.on('data', (buffer) => {
+      console.error(`stderror: ${buffer}`);
+      error = buffer.toString();
+    });
+    ls.on('close', (code) => {
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end({
+        code,
+        ok: code === 0,
+        error: code === 0 ? '' : error
+      });
+    });
   }
 }
 
