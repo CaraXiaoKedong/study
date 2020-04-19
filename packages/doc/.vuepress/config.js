@@ -8,15 +8,24 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: 'Github', link: 'https://github.com/CaraXiaoKedong/study'}
     ],
-    sidebar: [{
-      title: '使用指南',
-      path: '/guide/',
-      children: [
-        '/guide/vuepress',
-        '/guide/lerna',
-        '/guide/markdown'
-      ]
-    }],
+    sidebar: [
+      {
+        title: '工具使用指南',
+        path: '/guide/',
+        children: [
+          '/guide/vuepress',
+          '/guide/markdown',
+          '/guide/lerna',
+          '/guide/npm',
+        ]
+      },{
+        title: '优秀博客',
+        path: '/blogs/',
+        children: [
+          '/blogs/ui-tools',
+        ]
+      }
+    ],
   },
   dest: './build'
 }
