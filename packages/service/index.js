@@ -9,7 +9,6 @@ const server = http.createServer((req, res) => {
     _end.apply(res, arguments);
   }
   if(req.method === 'POST'){
-    console.log(req.headers);
     bodyParse(req, res);
   }else{
     res.end('not found');
@@ -34,6 +33,7 @@ function bodyParse(req, res){
 
 function routeHandler(req, res) {
   if(req.url === '/api/restart/doc'){
+    console.log(req.body);
     res.writeHead(200, {'Content-Type': 'application/json'});
     res.end(req.body);
   }
