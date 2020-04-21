@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev .",
+    "dev": "bash dev.sh",
     "build": "vuepress build ."
   },
   "keywords": [],
@@ -12,5 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "vuepress": "^1.4.1"
-  }
+  },
+  "devDependencies": {}
 }
